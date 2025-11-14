@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 
 function BasicExample() {
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card className='m-3' style={{ width: '18rem' }}>
       <Card.Body>
         <Card.Title>Avatar</Card.Title>
         <Card.Text>

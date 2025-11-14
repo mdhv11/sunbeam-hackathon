@@ -4,7 +4,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-black" data-bs-theme="dark">
       <div className="container-fluid">
-        <Link className="navbar-brand" to=".">
+        <Link className="navbar-brand" to="/movie_list">
          All Movies
         </Link>
 
@@ -14,27 +14,19 @@ function Navbar() {
               <Link className="nav-link" aria-current="page" to="/movie_review" >
                 Movies Reviews
               </Link>
-              <Link
-  to={{
-    pathname: "../pages/movie-list/movie_review",
-    search: "?query=string",
-    hash: "#hash",
-  }}
-/>
-
             </li>
             <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to="/add-property">
+              <Link className="nav-link" aria-current="page" to="/My_review">
                 My Reviews
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to="/cart">
+              <Link className="nav-link" aria-current="page" to="/Share_with_me">
                 Shared With Me
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to="/bookings">
+              <Link className="nav-link" aria-current="page" to="/All_review">
                 All Reviews
               </Link>
             </li>

@@ -1,6 +1,5 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import Cardd from '../../components/Cardd'
 import BasicExample from '../../components/AllMovie'
 import Navbar from '../../components/Navbar'
 function Movie_list() {
@@ -11,6 +10,13 @@ function Movie_list() {
         All Movies
       </h3>
       <div className='row m-3'>
+      <BasicExample />
+      <BasicExample />
+      
+      <BasicExample />
+      <BasicExample />
+      
+      <BasicExample />
       <BasicExample />
       
       <BasicExample />
