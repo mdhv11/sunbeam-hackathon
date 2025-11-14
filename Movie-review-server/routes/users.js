@@ -39,14 +39,46 @@ router.post('/login', (req, res) => {
                 const token = jwt.sign(payload, config.secret)
                 const body = {
                     token: token,
-                    firstName: data[0].firstName,
-                    lastName: data[0].lastName,
+                    firstName: data[0].first_name,
+                    lastName: data[0].last_name,
                 }
                 res.send(result.createSuccessResult(body))
             } else res.send(result.createErrorResult('Invalid email or password'))
         } else res.send(result.createErrorResult(error))
     })
 })
+
+//change password
+// router.put('/password', (req, res) => {
+//     const { oldPassword, newPassword } = req.body
+//     const userId = req.userId
+
+//     if (!oldPassword || !newPassword) {
+//         return res.send(result.createErrorResult('Old and new passwords are required'))
+//     }
+
+//     const checkPasswordSql = `SELECT password FROM users WHERE id = ?;`
+//     const encryptedNewPassword = String(cryptoJs.SHA256(newPassword))
+//     const encryptedOldPassword = String(cryptoJs.SHA256(oldPassword))
+//     pool.query(checkPasswordSql, [userId], (error, userData) => {
+//         if (error) {
+//             return res.send(result.createErrorResult(error))
+//         }
+//         if (userData.length === 0) {
+//             return res.send(result.createErrorResult('User not found'))
+//         }
+
+//         const user = userData[0]
+//         if (user.password !== encryptedOldPassword) {
+//             return res.send(result.createErrorResult('Old password is incorrect'))
+//         }
+
+//         const updatePasswordSql = `UPDATE users SET password = ? WHERE id = ?;`
+//         pool.query(updatePasswordSql, [encryptedNewPassword, userId], (error, data) => {
+//             res.send(result.createResult(error, data))
+//         })
+//     })
+// })
 
 //get user profile
 router.get('/profile', (req, res) => {
