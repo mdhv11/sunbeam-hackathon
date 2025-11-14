@@ -16,6 +16,17 @@ create table movies(
     title varchar(50),
     release_date DATE
 );
+insert into movies(title,release_date) values
+('The Dark Knight','2008-07-18'),
+('The Dark Knight Rises', '2012-07-20'),
+('Inception', '2010-07-16'),
+('Interstellar', '2014-11-07'),
+('Dunkirk', '2017-07-21'),
+('Tenet', '2020-09-03'),
+('Mank', '2020-09-03'),
+('Oppenheimer', '2023-07-21'),
+('Barbie', '2023-07-21'),
+('The Menu', '2023-04-07');
 
 create table reviews(
     review_id integer primary key auto_increment,
@@ -23,7 +34,7 @@ create table reviews(
     review varchar(255),
     rating integer,
     user_id integer,
-    modified DATE default CURRENT_TIMESTAMP,
+    modified DATETIME default CURRENT_TIMESTAMP,
     foreign key (movie_id) references movies(movie_id),
     foreign key (user_id) references users(id)
 );
@@ -31,7 +42,7 @@ create table reviews(
 create table shares(
     review_id integer,
     user_id integer,
-    foreign key (review_id) references reviews(review_id),
+    foreign key (review_id) references reviews(review_id) ON DELETE CASCADE,
     foreign key (user_id) references users(id)
 );
 

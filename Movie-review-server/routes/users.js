@@ -8,8 +8,10 @@ const config = require('../utils/config')
 
 const router = express.Router()
 
+//new user registration
 router.post('/register', (req, res) => {
     const { first_name, last_name, email, password, mobile, dob } = req.body
+    //password encryption
     const encryptedPassword = String(cryptoJs.SHA256(password))
     const sql = `INSERT INTO users(first_name, last_name, email, password, mobile, dob) VALUES(?,?,?,?,?,?)`
     pool.query(
@@ -21,11 +23,14 @@ router.post('/register', (req, res) => {
     )
 })
 
+//user login
 router.post('/login', (req, res) => {
     const { email, password } = req.body
+    //password encryption
     const encryptedPassword = String(cryptoJs.SHA256(password))
     const sql = `SELECT * FROM users WHERE email = ? AND password = ?`
     pool.query(sql, [email, encryptedPassword], (error, data) => {
+        //checking if password is correct
         if (data) {
             if (data.length !== 0) {
                 const payload = {
@@ -43,6 +48,7 @@ router.post('/login', (req, res) => {
     })
 })
 
+//get user profile
 router.get('/profile', (req, res) => {
     const sql = `SELECT first_name, last_name, mobile, email, dob FROM users WHERE id = ?`
     pool.query(sql, [req.headers.userId], (error, data) => {
@@ -50,6 +56,7 @@ router.get('/profile', (req, res) => {
     })
 })
 
+//update user profile
 router.put('/profile', (req, res) => {
     const { first_name, last_name, mobile, email, dob } = req.body
     const sql = `UPDATE users SET first_name=?, last_name=?, mobile=?, email=?, dob=? WHERE id = ?`
@@ -61,4 +68,19 @@ router.put('/profile', (req, res) => {
         }
     )
 })
+
+//get all reviews by a user
+router.get('/:userId', (req, res) => {
+    const { userId } = req.params
+
+    if (!userId || isNaN(userId)) {
+        return res.send(result.createErrorResult('Invalid user ID'))
+    }
+
+    const sql = `SELECT reviews.* FROM reviews JOIN users ON reviews.user_id = users.id WHERE user_id = ?;`
+    pool.query(sql, [userId], (error, data) => {
+        res.send(result.createResult(error, data))
+    })
+})
+
 module.exports = router
