@@ -1,9 +1,18 @@
 const express = require('express')
 const cors = require('cors')
+const authorization = require("./routes/authorization");
 
-const app = express
+const userRouter = require('./routes/users');
 
-app.request('cors')
+const app = express()
+
+//middleware
+app.use(cors())
+app.use(express.json())
+app.use(authorization)
+
+//routes
+app.use('/users', userRouter)
 
 
 app.listen(4000, 'localhost', ()=>{
