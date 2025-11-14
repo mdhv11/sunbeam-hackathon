@@ -12,13 +12,13 @@ function Signin() {
     } else if (password.length == 0) {
       toast.warning("please enter password");
     } else {
-      const response = await Signin(email, password);
+      const response = await signin(email, password);
       if (response["status"] == "success") {
         toast.success("Signin successful");
         localStorage.setItem("token", response["data"]["token"]);
         localStorage.setItem("firstName", response["data"]["firstName"]);
         localStorage.setItem("lastName", response["data"]["lastName"]);
-        navigate("/movie-list/Movie-list");
+        navigate("/Movie-list/Movie_list");
       } else {
         toast.error(response["error"]);
       }
