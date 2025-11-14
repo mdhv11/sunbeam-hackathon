@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { signup } from "../../services/users";
 import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
@@ -26,7 +27,7 @@ function Signup() {
     } else if (password != confirmPassword) {
       toast.warning("password does not match");
     } else {
-      const response = await Signup(
+      const response = await signup(
         firstName,
         lastName,
         email,

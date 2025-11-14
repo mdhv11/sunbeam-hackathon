@@ -1,44 +1,51 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+    <nav className="navbar navbar-expand-lg bg-black" data-bs-theme="dark">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="properties">
-          MyAirbnb
+        <Link className="navbar-brand" to=".">
+         All Movies
         </Link>
 
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link" aria-current="page" to="/properties">
-                Properties
+              <Link className="nav-link" aria-current="page" to="/movie_review" >
+                Movies Reviews
               </Link>
+              <Link
+  to={{
+    pathname: "../pages/movie-list/movie_review",
+    search: "?query=string",
+    hash: "#hash",
+  }}
+/>
+
             </li>
             <li className="nav-item">
               <Link className="nav-link" aria-current="page" to="/add-property">
-                Add
+                My Reviews
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" aria-current="page" to="/cart">
-                Cart
+                Shared With Me
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" aria-current="page" to="/bookings">
-                Bookings
+                All Reviews
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" aria-current="page" to="/about-us">
-                About Us
+               Edit Profile
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" aria-current="page" to="/contact-us">
-                Contact Us
+                Change Password
               </Link>
             </li>
             <li className="nav-item">
